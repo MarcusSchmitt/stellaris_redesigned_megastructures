@@ -1,0 +1,38 @@
+####################################################################
+#Written by ManyFace mod Redesigned Megastructures    ID: 910695494#
+####################################################################
+death_by_megastructure = {
+	pop_happiness = -1
+	icon = "gfx/interface/icons/planet_modifiers/pm_strong_magnetic_field.dds"
+	icon_frame = 3
+}
+dyson_sphere_frame_reduced_sun = {
+	tile_resource_energy_mult = -0.2
+	planet_building_upkeep_mult = 0.1
+	icon = "gfx/interface/icons/planet_modifiers/pm_unstable_tectonics.dds"
+	icon_frame = 3
+}
+dyson_sphere_panel_1_reduced_sun = {
+	tile_resource_energy_mult = -0.4
+	planet_building_upkeep_mult = 0.2
+	icon = "gfx/interface/icons/planet_modifiers/pm_unstable_tectonics.dds"
+	icon_frame = 3
+}
+dyson_sphere_panel_2_reduced_sun = {
+	tile_resource_energy_mult = -0.6
+	planet_building_upkeep_mult = 0.3
+	icon = "gfx/interface/icons/planet_modifiers/pm_unstable_tectonics.dds"
+	icon_frame = 3
+}
+dyson_sphere_panel_3_reduced_sun = {
+	tile_resource_energy_mult = -0.8
+	planet_building_upkeep_mult = 0.4
+	icon = "gfx/interface/icons/planet_modifiers/pm_unstable_tectonics.dds"
+	icon_frame = 3
+}
+dyson_sphere_panel_4_reduced_sun = {
+	tile_resource_energy_mult = -1.0
+	planet_building_upkeep_mult = 0.5
+	icon = "gfx/interface/icons/planet_modifiers/pm_unstable_tectonics.dds"
+	icon_frame = 3
+}

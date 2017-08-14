@@ -1,0 +1,124 @@
+####################################################################
+#Written by ashall_123 mod Megastructure Placement    ID: 900785559#
+#adapted by ManyFace for  Redesigned Megastructures   ID: 910695494#
+####################################################################
+opinion_ring_genocidal = {
+	opinion = {
+		base = -75
+		modifier = {
+			add = -5
+			NOR = { 
+				is_country_type = fallen_empire
+				is_country_type = awakened_fallen_empire 
+			} 		
+		}		
+		modifier = {
+			add = -5
+			has_ethic = "ethic_egalitarian"
+			allows_purge = no
+			NOR = { 
+				is_country_type = fallen_empire
+				is_country_type = awakened_fallen_empire 
+			} 
+		}
+		modifier = {
+			add = -10
+			has_ethic = "ethic_fanatic_egalitarian"
+			allows_purge = no
+			NOR = { 
+				is_country_type = fallen_empire
+				is_country_type = awakened_fallen_empire 
+			} 
+		}
+		modifier = {
+			add = -5
+			has_ethic = "ethic_xenophile"
+			allows_purge = no
+			NOR = { 
+				is_country_type = fallen_empire
+				is_country_type = awakened_fallen_empire 
+			} 
+		}
+		modifier = {
+			add = -10
+			has_ethic = "ethic_fanatic_xenophile"
+			allows_purge = no
+			NOR = { 
+				is_country_type = fallen_empire
+				is_country_type = awakened_fallen_empire 
+			} 
+		}	
+		modifier = {
+			add = -5
+			has_ai_personality = awakened_fallen_empire_xenophile
+		}			
+	}
+	
+	accumulative = yes
+	
+	min = -1000
+
+	decay = {
+		base = 2
+	}
+}
+opinion_sphere_genocidal = {
+	opinion = {
+		base = -75
+		modifier = {
+			add = -5
+			NOR = { 
+				is_country_type = fallen_empire
+				is_country_type = awakened_fallen_empire 
+			} 		
+		}		
+		modifier = {
+			add = -5
+			has_ethic = "ethic_egalitarian"
+			allows_purge = no
+			NOR = { 
+				is_country_type = fallen_empire
+				is_country_type = awakened_fallen_empire 
+			} 
+		}
+		modifier = {
+			add = -10
+			has_ethic = "ethic_fanatic_egalitarian"
+			allows_purge = no
+			NOR = { 
+				is_country_type = fallen_empire
+				is_country_type = awakened_fallen_empire 
+			} 
+		}
+		modifier = {
+			add = -10
+			has_ethic = "ethic_xenophile"
+			allows_purge = no
+			NOR = { 
+				is_country_type = fallen_empire
+				is_country_type = awakened_fallen_empire 
+			} 
+		}
+		modifier = {
+			add = -20
+			has_ethic = "ethic_fanatic_xenophile"
+			allows_purge = no
+			NOR = { 
+				is_country_type = fallen_empire
+				is_country_type = awakened_fallen_empire 
+			} 
+		}	
+		modifier = {
+			add = -5
+			has_ai_personality = awakened_fallen_empire_xenophile
+		}			
+	}
+	
+	accumulative = yes
+	
+	min = -1000
+
+	decay = {
+		base = 2
+	}
+}
