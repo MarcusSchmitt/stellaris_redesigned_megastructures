@@ -5,7 +5,7 @@
 @stage_1_build_time = 500
 @stage_2_build_time = 3600
 @stage_3_build_time = 1000
-@block_other_construction = no
+@block_other_construction = yes
 
 ring_world_1 = {
 	entity = "construction_platform_entity"
