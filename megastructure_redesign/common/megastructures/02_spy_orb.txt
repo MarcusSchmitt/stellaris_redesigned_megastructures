@@ -1,28 +1,19 @@
-####################################################################
-#Inspired by ashall_123 mod Megastructure Placement   ID: 900785559#
-#Inspired by Red Aria Improved Megastructures	      ID: 900785559#
-#modified by ManyFace mod Redesigned Megastructures   ID: 910695494#
-####################################################################
 @phase_0_entity_x = -15
 @phase_0_entity_y = -5
 @entity_x = -15
 @entity_y = -15
-@block_other_construction = no
-@initial_buid_time = 500
-@add_to_frame_build_time = 750
 spy_orb_0 = {
 	entity = "construction_platform_entity"
 	construction_entity = "construction_platform_entity"
 	portrait = "GFX_megastructure_construction_background"
 	place_entity_on_planet_plane = no
 	entity_offset = { x = @phase_0_entity_x y = @phase_0_entity_y }
-	build_time = @initial_buid_time
+	build_time = 1800
 	
 	build_cost = {
 		minerals = 10000
 		influence = 300
 	}
-	construction_blocks_others = @block_other_construction
 
 	maintenance = {
 		energy = 5
@@ -66,6 +57,10 @@ spy_orb_0 = {
 				}
 			}
 		}
+		#custom_tooltip = {
+		#	fail_text = "requires_no_existing_megastructure"
+		#	NOT = { has_any_megastructure = yes }
+		#}
 	}
 	
 	placement_rules = {
@@ -76,8 +71,11 @@ spy_orb_0 = {
 					who = prev.from
 					status = yes
 				}
-				habitable_planet = no
-				habitable_structure = no
+				colonizeable_planet = no
+			}
+			custom_tooltip = {
+				fail_text = "requires_no_anomaly"
+				NOT = { has_anomaly = yes }
 			}
 
 			#custom_tooltip = { # balance for think tanks
@@ -92,13 +90,27 @@ spy_orb_0 = {
 				fail_text = "must_build_around_star"
 				is_star = yes
 			}
+
 			custom_tooltip = {
-				fail_text = "requires_no_anomaly"
-				NOT = { has_anomaly = yes }
+				fail_text = "requires_no_existing_megastructure"
+				solar_system = {
+					NOR = {
+						has_any_megastructure = yes
+						any_planet = {
+							OR = {
+								is_planet_class = pc_ringworld_habitable
+								is_planet_class = pc_ringworld_habitable_damaged
+								is_planet_class = pc_ringworld_tech
+								is_planet_class = pc_ringworld_tech_damaged
+								is_planet_class = pc_ringworld_seam
+								is_planet_class = pc_ringworld_seam_damaged
+							}
+						}
+					}
+				}
 			}
 		} # use these for all non-star megastructures
 	}	
-	
 	
 	ai_weight = {
 		factor = 10
@@ -144,11 +156,10 @@ spy_orb_1 = {
 	upgrade_from = {
 		spy_orb_0
 	}
-	build_time = @add_to_frame_build_time
+	build_time = 1800
 	build_cost = {
-		minerals = 15000
+		minerals = 20000
 	}
-	construction_blocks_others = @block_other_construction
 
 	maintenance = {
 		energy = 8
@@ -170,11 +181,10 @@ spy_orb_2 = {
 	upgrade_from = {
 		spy_orb_1
 	}
-	build_time = @add_to_frame_build_time
+	build_time = 1800
 	build_cost = {
-		minerals = 15000
+		minerals = 20000
 	}
-	construction_blocks_others = @block_other_construction
 	maintenance = {
 		energy = 10
 	}
@@ -194,11 +204,10 @@ spy_orb_3 = {
 	upgrade_from = {
 		spy_orb_2
 	}
-	build_time = @add_to_frame_build_time
+	build_time = 1800
 	build_cost = {
-		minerals = 15000
+		minerals = 20000
 	}
-	construction_blocks_others = @block_other_construction
 	maintenance = {
 		energy = 12
 	}
@@ -217,11 +226,10 @@ spy_orb_4 = {
 	upgrade_from = {
 		spy_orb_3
 	}
-	build_time = @add_to_frame_build_time
+	build_time = 1800
 	build_cost = {
-		minerals = 15000
+		minerals = 20000
 	}
-	construction_blocks_others = @block_other_construction
 	maintenance = {
 		energy = 15
 	}
@@ -257,7 +265,7 @@ spy_orb_restored = {
 	}
 	build_time = 3600
 	build_cost = {
-		minerals = 40000
+		minerals = 30000
 	}
 	maintenance = {
 		energy = 15
@@ -279,6 +287,7 @@ spy_orb_restored = {
 							is_megastructure_type = spy_orb_3
 							is_megastructure_type = spy_orb_4
 							is_megastructure_type = spy_orb_restored
+							is_megastructure_type = spy_orb_ruined
 						}
 					}
 				}

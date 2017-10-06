@@ -1,21 +1,7 @@
-####################################################################
-#Inspired by ashall_123 mod Megastructure Placement   ID: 900785559#
-#Inspired by Red Aria Improved Megastructures	      ID: 900785559#
-#modified by ManyFace mod Redesigned Megastructures   ID: 910695494#
-####################################################################
-@stage_1_research_bonus	= 50
-@stage_2_research_bonus	= 100
-@stage_3_research_bonus	= 200
-@stage_4_research_bonus	= 225
-@stage_0_energy_maintenance = 5
-@stage_1_energy_maintenance = 10
-@stage_2_energy_maintenance = 15
-@stage_3_energy_maintenance = 25
-@stage_0_build_time = 1000
-@stage_1_build_time = 500
-@stage_2_build_time = 500
-@stage_3_build_time = 750
-@block_other_construction = no
+@stage_1_research_bonus	= 75
+@stage_2_research_bonus	= 150
+@stage_3_research_bonus	= 225
+@stage_4_research_bonus	= 250
 @entity_x				= 0
 @entity_y 				= -20
 
@@ -29,15 +15,14 @@ think_tank_0 = {
 	place_entity_on_planet_plane = no
 	entity_offset = { x = @entity_x y = @entity_y }
 
-	build_time = @stage_0_build_time
+	build_time = 1800
 	build_cost = {
 		minerals = 10000
 		influence = 300
 	}
-	construction_blocks_others = @block_other_construction
 
 	maintenance = {
-		energy = @stage_0_energy_maintenance
+		energy = 5
 	}
 	
 	potential = {
@@ -54,18 +39,39 @@ think_tank_0 = {
 	placement_rules = {
 		planet_possible = {
 			custom_tooltip = {
+				fail_text = "requires_no_existing_megastructure"
+				has_any_megastructure = no
+				NOR = {
+					has_planet_flag = megastructure
+					has_planet_flag = has_megastructure
+					solar_system = { has_any_megastructure = yes }
+				}
+			}
+			custom_tooltip = {
+				fail_text = "requires_no_existing_think_tank"
+				from = {
+					NOT = {
+						any_owned_megastructure = {
+							OR = {
+								is_megastructure_type = think_tank_0
+								is_megastructure_type = think_tank_1
+								is_megastructure_type = think_tank_2
+								is_megastructure_type = think_tank_3
+								is_megastructure_type = think_tank_4
+								is_megastructure_type = think_tank_restored
+								is_megastructure_type = think_tank_ruined
+							}
+						}
+					}
+				}
+			}			
+			custom_tooltip = {
 				fail_text = "requires_survey_not_habitable"
 				is_surveyed = {			# prevent leaking habitability information
 					who = prev.from
 					status = yes
 				}
-				habitable_planet = no	# prevent the spaceport colliding with the think tank
-				habitable_structure = no
-			}
-
-			custom_tooltip = {
-				fail_text = "requires_no_existing_megastructure"
-				can_build_megastructure_on_planet = yes
+				colonizeable_planet = no
 			}
 			custom_tooltip = {
 				fail_text = "requires_no_anomaly"
@@ -83,6 +89,10 @@ think_tank_0 = {
 			custom_tooltip = {
 				fail_text = "requires_not_star"
 				is_star = no
+			}
+			custom_tooltip = {
+				fail_text = "requires_not_ring_world"
+				is_ringworld = no
 			}
 		} # use these for all non-star megastructures
 	}
@@ -137,11 +147,14 @@ think_tank_1 = {
 		think_tank_0
 	}
 
-	build_time = @stage_1_build_time
+	build_time = 2400
 	build_cost = {
-		minerals = 20000
+		minerals = 30000
 	}
-	construction_blocks_others = @block_other_construction
+	
+	possible = {
+		from = { has_ascension_perk = ap_galactic_wonders }
+	}
 
 	monthly_production = {
 		society_research = @stage_1_research_bonus
@@ -150,7 +163,7 @@ think_tank_1 = {
 	}
 
 	maintenance = {
-		energy = @stage_1_energy_maintenance
+		energy = 8
 	}
 }
 
@@ -166,11 +179,10 @@ think_tank_2 = {
 		think_tank_1
 	}
 
-	build_time = @stage_2_build_time
+	build_time = 2400
 	build_cost = {
-		minerals = 20000
+		minerals = 30000
 	}
-	construction_blocks_others = @block_other_construction
 	
 	possible = {
 		from = { has_ascension_perk = ap_galactic_wonders }
@@ -183,7 +195,7 @@ think_tank_2 = {
 	}
 
 	maintenance = {
-		energy = @stage_2_energy_maintenance
+		energy = 12
 	}
 }
 
@@ -199,11 +211,10 @@ think_tank_3 = {
 		think_tank_2
 	}
 
-	build_time = @stage_3_build_time
+	build_time = 2400
 	build_cost = {
-		minerals = 20000
+		minerals = 30000
 	}
-	construction_blocks_others = @block_other_construction
 	
 	possible = {
 		from = { has_ascension_perk = ap_galactic_wonders }
@@ -216,7 +227,7 @@ think_tank_3 = {
 	}
 
 	maintenance = {
-		energy = @stage_3_energy_maintenance
+		energy = 15
 	}
 }
 
@@ -237,7 +248,6 @@ think_tank_4 = {
 	}
 
 	build_time = 20
-	construction_blocks_others = @block_other_construction
 	
 	monthly_production = {
 		society_research = @stage_4_research_bonus
@@ -277,7 +287,7 @@ think_tank_restored = {
 	}
 	build_time = 3600
 	build_cost = {
-		minerals = 40000
+		minerals = 30000
 	}
 
 	monthly_production = {
@@ -288,6 +298,24 @@ think_tank_restored = {
 
 	possible = {
 		from = { has_technology = tech_mega_engineering }
+		custom_tooltip = {
+			fail_text = "requires_no_existing_think_tank"
+			from = {
+				NOT = {
+					any_owned_megastructure = {
+						OR = {
+							is_megastructure_type = think_tank_0
+							is_megastructure_type = think_tank_1
+							is_megastructure_type = think_tank_2
+							is_megastructure_type = think_tank_3
+							is_megastructure_type = think_tank_4
+							is_megastructure_type = think_tank_restored
+							is_megastructure_type = think_tank_ruined
+						}
+					}
+				}
+			}
+		}		
 	}
 
 	on_build_start = {

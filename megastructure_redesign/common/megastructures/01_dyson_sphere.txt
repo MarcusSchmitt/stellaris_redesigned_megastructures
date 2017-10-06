@@ -1,16 +1,3 @@
-####################################################################
-#Inspired by ashall_123 mod Megastructure Placement   ID: 900785559#
-#Inspired by Red Aria Improved Megastructures	      ID: 900785559#
-#modified by ManyFace mod Redesigned Megastructures   ID: 910695494#
-####################################################################
-@initial_build_time = 500
-@frame_build_time = 3600
-@fill_frame_build_time = 1000
-@block_other_construction = no
-@panel_1_energy_production = 150
-@panel_2_energy_production = 300
-@panel_3_energy_production = 500
-@panel_4_energy_production = 750
 #Dyson Sphere Site 
 dyson_sphere_0 = {
 	entity = "construction_platform_entity"
@@ -18,12 +5,11 @@ dyson_sphere_0 = {
 	portrait = "GFX_megastructure_construction_background"
 	place_entity_on_planet_plane = no
 	entity_offset = { x = -7 y = -7 }
-	build_time = @initial_build_time
+	build_time = 1800
 	build_cost = {
 		minerals = 10000
 		influence = 300
 	}
-	construction_blocks_others = @block_other_construction
 
 	maintenance = {
 		energy = 5
@@ -56,7 +42,7 @@ dyson_sphere_0 = {
 					}
 				}
 			}
-		}
+		}		
 		custom_tooltip = {
 			fail_text = "requires_surveyed_system"
 			NOT = {
@@ -69,18 +55,17 @@ dyson_sphere_0 = {
 			}
 		}
 		custom_tooltip = {
-			fail_text = "requires_no_capital"
+			fail_text = "requires_no_habitable_planets"
 			NOT = {
 				any_planet = {
-						is_capital = yes
+					AND = {
+						OR = {
+							habitable_planet = yes
+							habitable_structure = yes
+						}
+						NOT = { has_planet_flag = habitat }
 					}
 				}
-		}
-		custom_tooltip = {
-			fail_text = "requires_no_star_megastructure"
-			NOR = {
-				has_star_flag = ring_world_built
-				has_star_flag = dyson_sphere_built
 			}
 		}
 		custom_tooltip = {
@@ -90,6 +75,10 @@ dyson_sphere_0 = {
 				is_star_class = sc_neutron_star
 				is_star_class = sc_pulsar
 			}
+		}
+		custom_tooltip = {
+			fail_text = "requires_no_existing_megastructure"
+			NOT = { has_any_megastructure = yes }
 		}
 	}
 	
@@ -147,11 +136,10 @@ dyson_sphere_1 = {
 	upgrade_from = {
 		dyson_sphere_0
 	}
-	build_time = @frame_build_time
+	build_time = 3600
 	build_cost = {
-		minerals = 40000
+		minerals = 50000
 	}
-	construction_blocks_others = @block_other_construction
 
 	possible = {
 		from = { has_ascension_perk = ap_galactic_wonders }
@@ -166,13 +154,12 @@ dyson_sphere_2 = {
 	upgrade_from = {
 		dyson_sphere_1
 	}
-	build_time = @fill_frame_build_time
+	build_time = 3600
 	build_cost = {
-		minerals = 40000
+		minerals = 50000
 	}
-	construction_blocks_others = @block_other_construction
 	monthly_production = {
-		energy = @panel_1_energy_production
+		energy = 250
 	}
 
 	possible = {
@@ -188,13 +175,12 @@ dyson_sphere_3 = {
 	upgrade_from = {
 		dyson_sphere_2
 	}
-	build_time = @fill_frame_build_time
+	build_time = 3600
 	build_cost = {
-		minerals = 40000
+		minerals = 50000
 	}
-	construction_blocks_others = @block_other_construction
 	monthly_production = {
-		energy = @panel_2_energy_production
+		energy = 500
 	}
 
 	possible = {
@@ -210,13 +196,12 @@ dyson_sphere_4 = {
 	upgrade_from = {
 		dyson_sphere_3
 	}
-	build_time = @fill_frame_build_time
+	build_time = 3600
 	build_cost = {
-		minerals = 40000
+		minerals = 50000
 	}
-	construction_blocks_others = @block_other_construction
 	monthly_production = {
-		energy = @panel_3_energy_production
+		energy = 750
 	}
 
 	possible = {
@@ -232,19 +217,18 @@ dyson_sphere_5 = {
 	upgrade_from = {
 		dyson_sphere_4
 	}
-	build_time = @fill_frame_build_time
+	build_time = 3600
 	build_cost = {
-		minerals = 40000
+		minerals = 50000
 	}
 	monthly_production = {
-		energy = @panel_4_energy_production
+		energy = 1000
 	}
 
 	possible = {
 		from = { has_ascension_perk = ap_galactic_wonders }
 	}
 
-	construction_blocks_others = @block_other_construction
 	on_build_complete = {
 		every_system_planet = {
 			limit = {
@@ -282,9 +266,9 @@ dyson_sphere_restored = {
 	upgrade_from = {
 		dyson_sphere_ruined
 	}
-	build_time = 5000
+	build_time = 7200
 	build_cost = {
-		minerals = 40000
+		minerals = 50000
 	}
 	monthly_production = {
 		energy = 1000
@@ -310,7 +294,7 @@ dyson_sphere_restored = {
 					}
 				}
 			}
-		}
+		}			
 	}
 
 	on_build_start = {

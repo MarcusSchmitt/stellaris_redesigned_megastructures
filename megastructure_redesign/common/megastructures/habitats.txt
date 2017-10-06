@@ -9,7 +9,7 @@ habitat_0 = {
 	build_time = 1800
 	build_cost = {
 		minerals = 5000
-		influence = 100
+		influence = 150
 	}
 	construction_blocks_others = no
 
@@ -32,7 +32,20 @@ habitat_0 = {
 			}
 			custom_tooltip = {
 				fail_text = "requires_no_existing_megastructure"
-				can_build_megastructure_on_planet = yes
+				#can_build_megastructure_on_planet = yes
+				NOR = {
+					has_planet_flag = megastructure
+					has_planet_flag = has_megastructure
+					solar_system = {
+						has_star_flag = ring_world_built
+					}
+					is_planet_class = pc_ringworld_habitable
+					is_planet_class = pc_ringworld_habitable_damaged
+					is_planet_class = pc_ringworld_tech
+					is_planet_class = pc_ringworld_tech_damaged
+					is_planet_class = pc_ringworld_seam
+					is_planet_class = pc_ringworld_seam_damaged
+				}
 			}
 			custom_tooltip = {
 				fail_text = "requires_no_orbital_station"
@@ -44,7 +57,7 @@ habitat_0 = {
 					who = prev.from
 					status = yes
 				}
-				habitable_planet = no	# prevent the spaceport colliding with the habitat
+				colonizeable_planet = no	# prevent the spaceport colliding with the habitat
 			}
 
  			# balance for habitats
