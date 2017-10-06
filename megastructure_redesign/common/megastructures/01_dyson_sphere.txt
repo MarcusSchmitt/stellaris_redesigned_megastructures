@@ -175,8 +175,10 @@ dyson_sphere_1 = {
 	}
 	on_build_cancel = {}
 	on_build_complete = {
+		set_star_flag = has_dyson_frame
 		every_system_planet = { 
 			limit = { is_star = no }
+			set_planet_flag = has_dyson_frame
 			add_modifier = {
 				modifier = "dyson_sphere_frame_reduced_sun"
 				days = -1
@@ -207,9 +209,13 @@ dyson_sphere_2 = {
 	}
 	
 	on_build_complete = {
+		remove_star_flag = has_dyson_frame
+		set_star_flag = has_dyson_panel_1
 		every_system_planet = { 
 			limit = { is_star = no }
 			remove_modifier = dyson_sphere_frame_reduced_sun
+			remove_planet_flag = has_dyson_frame
+			set_planet_flag = has_dyson_panel_1
 			add_modifier = {
 				modifier = "dyson_sphere_panel_1_reduced_sun"
 				days = -1
@@ -239,9 +245,13 @@ dyson_sphere_3 = {
 		from = { has_ascension_perk = ap_galactic_wonders }
 	}
 	on_build_complete = {
+		remove_star_flag = has_dyson_panel_1
+		set_star_flag = has_dyson_panel_2
 		every_system_planet = { 
 			limit = { is_star = no }
 			remove_modifier = dyson_sphere_panel_1_reduced_sun
+			remove_planet_flag = has_dyson_panel_1
+			set_planet_flag = has_dyson_panel_2
 			add_modifier = {
 				modifier = "dyson_sphere_panel_2_reduced_sun"
 				days = -1
@@ -271,9 +281,13 @@ dyson_sphere_4 = {
 		from = { has_ascension_perk = ap_galactic_wonders }
 	}
 	on_build_complete = {
+		remove_star_flag = has_dyson_panel_2
+		set_star_flag = has_dyson_panel_3
 		every_system_planet = { 
 			limit = { is_star = no }
 			remove_modifier = dyson_sphere_panel_2_reduced_sun
+			remove_planet_flag = has_dyson_panel_2
+			set_planet_flag = has_dyson_panel_3
 			add_modifier = {
 				modifier = "dyson_sphere_panel_3_reduced_sun"
 				days = -1
@@ -360,6 +374,8 @@ dyson_sphere_5 = {
 		every_system_planet = { 
 			limit = { is_star = no }
 			remove_modifier = dyson_sphere_panel_3_reduced_sun
+			remove_planet_flag = has_dyson_panel_3
+			set_planet_flag = has_dyson_panel_4
 			add_modifier = {
 				modifier = "dyson_sphere_panel_4_reduced_sun"
 				days = -1
@@ -484,11 +500,13 @@ dyson_sphere_restored = {
 					NOT = {has_modifier = dyson_sphere_panel_4_reduced_sun}
 				}
 			}
+			set_planet_flag = has_dyson_panel_4
 			add_modifier = {
 				modifier = "dyson_sphere_panel_4_reduced_sun"
 				days = -1
 			} 
 		}
+		set_star_flag = has_dyson_panel_4
 		every_system_ambient_object = { destroy_ambient_object = this }
 		from = {
 			country_event = { id = utopia.2011 }

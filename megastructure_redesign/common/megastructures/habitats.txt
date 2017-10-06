@@ -117,8 +117,73 @@ habitat_0 = {
 				set_planet_flag = habitat
 			}
 		}
-		fromfrom.planet = {
-			set_planet_flag = has_megastructure
+		if = {
+			limit = {
+					fromfrom.planet = {has_planet_flag = has_dyson_frame}
+			}
+			every_system_planet = {
+				limit = {has_planet_flag = habitat}
+				add_modifier = {
+					modifier = "dyson_sphere_panel_1_reduced_sun"
+					days = -1
+				}
+			}
+		}
+		if = {
+			limit = {
+				fromfrom.planet = {
+					has_planet_flag = has_dyson_frame
+				}
+			}
+			every_system_planet = {
+				limit = {NOT={has_planet_flag = has_dyson_frame}}
+				add_modifier = {
+					modifier = dyson_sphere_panel_1_reduced_sun
+					days = -1
+				}
+			}
+		}
+		if = {
+			limit = {
+				fromfrom.planet = {
+					has_planet_flag = has_dyson_frame
+				}
+			}
+			every_system_planet = {
+				limit = {NOT={has_planet_flag = has_dyson_frame}}
+				add_modifier = {
+					modifier = dyson_sphere_panel_1_reduced_sun
+					days = -1
+				}
+			}
+		}
+		if = {
+			limit = {
+				fromfrom.planet = {
+					has_planet_flag = has_dyson_frame
+				}
+			}
+			every_system_planet = {
+				limit = {NOT={has_planet_flag = has_dyson_frame}}
+				add_modifier = {
+					modifier = dyson_sphere_panel_1_reduced_sun
+					days = -1
+				}
+			}
+		}
+		if = {
+			limit = {
+				fromfrom.planet = {
+					has_planet_flag = has_dyson_frame
+				}
+			}
+			every_system_planet = {
+				limit = {NOT={has_planet_flag = has_dyson_frame}}
+				add_modifier = {
+					modifier = dyson_sphere_panel_1_reduced_sun
+					days = -1
+				}
+			}
 		}
 		remove_megastructure = fromfrom
 		from = { country_event =  { id = utopia.61 } }
