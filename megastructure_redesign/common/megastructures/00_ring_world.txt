@@ -1,4 +1,16 @@
-# see README.txt for example
+####################################################################
+#Inspired by ashall_123 mod Megastructure Placement   ID: 900785559#
+#modified by ManyFace mod Redesigned Megastructures   ID: 910695494#
+####################################################################
+@stage_1_build_time = 360
+@stage_2_build_time = 9000
+@stage_3_build_time = 720
+@repair_time = 3600
+@stage_1_build_minerals = 500
+@stage_2_build_minerals = 50000
+@stage_3_build_minerals = 15000
+@repair_minerals = 20000
+@block_other_construction = no
 
 ring_world_1 = {
 	entity = "construction_platform_entity"
@@ -6,11 +18,12 @@ ring_world_1 = {
 	portrait = "GFX_megastructure_construction_background"
 	place_entity_on_planet_plane = no
 	entity_offset = { x = -7 y = -7 }
-	build_time = 1800
+	build_time = @stage_1_build_time
 	build_cost = {
-		minerals = 10000
+		minerals = @stage_1_build_minerals
 		influence = 300
 	}
+	construction_blocks_others = @block_other_construction
 
 	maintenance = {
 		energy = 5
@@ -37,22 +50,23 @@ ring_world_1 = {
 			}
 		}
 		custom_tooltip = {
-			fail_text = "requires_no_habitable_planets"
-			NOT = {
-				any_planet = {
-					colonizeable_planet = yes
-				}
+			fail_text = "requires_no_star_megastructure"
+			NOR = {
+				has_star_flag = ring_world_built
+				has_star_flag = dyson_sphere_built
 			}
 		}
 		custom_tooltip = {
-			fail_text = "requires_no_black_hole"
-			NOT = { is_star_class = sc_black_hole }
+			fail_text = "requires_no_think_tank"
+			NOT = {has_star_flag = think_tank_built}
 		}
-
 		custom_tooltip = {
-			fail_text = "requires_no_existing_megastructure"
-			#NOT = { solar_system = { has_any_megastructure_in_empire = yes } }
-			NOT = { has_any_megastructure = yes }
+			fail_text = "requires_not_capital_system"
+			NOT = {
+				any_planet = {
+						is_capital = yes
+					}
+			}
 		}
 	}
 	
@@ -67,14 +81,14 @@ ring_world_1 = {
 				NOT = { has_anomaly = yes }
 			}
 			custom_tooltip = {
-				fail_text = "requires_planets_for_material"
-				hidden:solar_system = { any_planet = { NOT = { is_star = yes } } }
+			fail_text = "requires_planets_for_material"
+			hidden:solar_system = { any_planet = { NOT = { is_star = yes } } }
 			}
 		}
 	}
 	
 	ai_weight = {
-		factor = 10		
+		factor = 10
 		modifier = {
 			factor = 0.5
 			has_any_megastructure_in_empire = yes
@@ -97,16 +111,24 @@ ring_world_2_intermediate = {
 		ring_world_1
 	}
 	
-	build_time = 4800
+	build_time = @stage_2_build_time
 	build_cost = {
-		minerals = 20000
+		minerals = @stage_2_build_minerals
 	}
+	construction_blocks_others = @block_other_construction
 
 	possible = {
 		from = { has_ascension_perk = ap_the_circle_of_life }
 	}
-	
-	on_build_start = {}
+	on_build_start = {
+		every_system_planet = { 
+			limit = { is_star = no }
+			add_modifier = {
+				modifier = "death_by_megastructure"
+				days = @stage_2_build_time
+			} 
+		}
+	}
 	on_build_cancel = {}
 	on_build_complete = {
 		every_system_planet = { 
@@ -174,11 +196,11 @@ ring_world_3_intermediate = {
 	upgrade_from = {
 		ring_world_2
 	}
-	build_time = 3600
+	build_time = @stage_3_build_time
 	build_cost = {
-		minerals = 20000
+		minerals = @stage_3_build_minerals
 	}
-
+	construction_blocks_others = @block_other_construction
 	possible = {
 		from = { has_ascension_perk = ap_the_circle_of_life }
 	}
@@ -251,6 +273,9 @@ ring_world_3_intermediate = {
 		fromfrom.planet = {
 			set_planet_flag = has_megastructure
 		}
+		event_target:ring_section = {
+			set_planet_flag = has_megastructure
+		}
 		remove_megastructure = fromfrom
 		if = {
 			limit = {
@@ -307,9 +332,9 @@ ring_world_restored = {
 	upgrade_from = {
 		ring_world_ruined
 	}
-	build_time = 3600
+	build_time = @repair_minerals
 	build_cost = {
-		minerals = 20000
+		minerals = @repair_time
 	}
 
 	possible = {

@@ -1,3 +1,19 @@
+####################################################################
+#Inspired by ashall_123 mod Megastructure Placement   ID: 900785559#
+#Inspired by Red Aria Improved Megastructures	      ID: 900785559#
+#modified by ManyFace mod Redesigned Megastructures   ID: 910695494#
+####################################################################
+@initial_build_time = 500
+@frame_build_time = 3600
+@frame_fear_time = 10800
+@fill_frame_build_time = 1000
+@frame_build_minerals = 10000
+@fill_frame_minerals = 40000
+@block_other_construction = no
+@panel_1_energy_production = 150
+@panel_2_energy_production = 300
+@panel_3_energy_production = 500
+@panel_4_energy_production = 1000
 #Dyson Sphere Site 
 dyson_sphere_0 = {
 	entity = "construction_platform_entity"
@@ -5,11 +21,12 @@ dyson_sphere_0 = {
 	portrait = "GFX_megastructure_construction_background"
 	place_entity_on_planet_plane = no
 	entity_offset = { x = -7 y = -7 }
-	build_time = 1800
+	build_time = @initial_build_time
 	build_cost = {
-		minerals = 10000
+		minerals = @frame_build_minerals
 		influence = 300
 	}
+	construction_blocks_others = @block_other_construction
 
 	maintenance = {
 		energy = 5
@@ -24,25 +41,25 @@ dyson_sphere_0 = {
 			fail_text = "requires_inside_border"
 			is_inside_border = from
 		}
-		custom_tooltip = {
-			fail_text = "requires_no_existing_dyson_sphere"
-			from = {
-				NOT = {
-					any_owned_megastructure = {
-						OR = {
-							is_megastructure_type = dyson_sphere_0
-							is_megastructure_type = dyson_sphere_1
-							is_megastructure_type = dyson_sphere_2
-							is_megastructure_type = dyson_sphere_3
-							is_megastructure_type = dyson_sphere_4
-							is_megastructure_type = dyson_sphere_5
-							is_megastructure_type = dyson_sphere_restored
-							is_megastructure_type = dyson_sphere_ruined
-						}
-					}
-				}
-			}
-		}		
+# 		custom_tooltip = {
+# 			fail_text = "requires_no_existing_dyson_sphere"
+# 			from = {
+# 				NOT = {
+# 					any_owned_megastructure = {
+# 						OR = {
+# 							is_megastructure_type = dyson_sphere_0
+# 							is_megastructure_type = dyson_sphere_1
+# 							is_megastructure_type = dyson_sphere_2
+# 							is_megastructure_type = dyson_sphere_3
+# 							is_megastructure_type = dyson_sphere_4
+# 							is_megastructure_type = dyson_sphere_5
+# 							is_megastructure_type = dyson_sphere_restored
+# 							is_megastructure_type = dyson_sphere_ruined
+# 						}
+# 					}
+# 				}
+# 			}
+# 		}
 		custom_tooltip = {
 			fail_text = "requires_surveyed_system"
 			NOT = {
@@ -55,17 +72,18 @@ dyson_sphere_0 = {
 			}
 		}
 		custom_tooltip = {
-			fail_text = "requires_no_habitable_planets"
+			fail_text = "requires_no_capital"
 			NOT = {
 				any_planet = {
-					AND = {
-						OR = {
-							habitable_planet = yes
-							habitable_structure = yes
-						}
-						NOT = { has_planet_flag = habitat }
+						is_capital = yes
 					}
 				}
+		}
+		custom_tooltip = {
+			fail_text = "requires_no_star_megastructure"
+			NOR = {
+				has_star_flag = ring_world_built
+				has_star_flag = dyson_sphere_built
 			}
 		}
 		custom_tooltip = {
@@ -75,10 +93,6 @@ dyson_sphere_0 = {
 				is_star_class = sc_neutron_star
 				is_star_class = sc_pulsar
 			}
-		}
-		custom_tooltip = {
-			fail_text = "requires_no_existing_megastructure"
-			NOT = { has_any_megastructure = yes }
 		}
 	}
 	
@@ -103,12 +117,12 @@ dyson_sphere_0 = {
 		factor = 15
 		
 		modifier = {
-			factor = 0.1
+			factor = 1.0
 			has_any_megastructure_in_empire = yes
 		}
 		
 		modifier = {
-			factor = 0.1
+			factor = 0.5
 			any_system_within_border = {
 				OR = {
 					has_megastructure = dyson_sphere_1
@@ -136,13 +150,38 @@ dyson_sphere_1 = {
 	upgrade_from = {
 		dyson_sphere_0
 	}
-	build_time = 3600
+	build_time = @frame_build_time
 	build_cost = {
-		minerals = 50000
+		minerals = @fill_frame_minerals
 	}
+	construction_blocks_others = @block_other_construction
 
 	possible = {
 		from = { has_ascension_perk = ap_galactic_wonders }
+	}
+	on_build_start = {
+		every_system_planet = { 
+			limit = { 
+				AND = {
+					is_star = no
+					NOT ={is_planet_class = pc_habitat}
+				}
+			}
+			add_modifier = {
+				modifier = "death_by_megastructure"
+				days = @frame_fear_time
+			} 
+		}
+	}
+	on_build_cancel = {}
+	on_build_complete = {
+		every_system_planet = { 
+			limit = { is_star = no }
+			add_modifier = {
+				modifier = "dyson_sphere_frame_reduced_sun"
+				days = -1
+			} 
+		}
 	}
 }
 
@@ -154,16 +193,28 @@ dyson_sphere_2 = {
 	upgrade_from = {
 		dyson_sphere_1
 	}
-	build_time = 3600
+	build_time = @fill_frame_build_time
 	build_cost = {
-		minerals = 50000
+		minerals = @fill_frame_minerals
 	}
+	construction_blocks_others = @block_other_construction
 	monthly_production = {
-		energy = 250
+		energy = @panel_1_energy_production
 	}
 
 	possible = {
 		from = { has_ascension_perk = ap_galactic_wonders }
+	}
+	
+	on_build_complete = {
+		every_system_planet = { 
+			limit = { is_star = no }
+			remove_modifier = dyson_sphere_frame_reduced_sun
+			add_modifier = {
+				modifier = "dyson_sphere_panel_1_reduced_sun"
+				days = -1
+			} 
+		}
 	}
 }
 
@@ -175,16 +226,27 @@ dyson_sphere_3 = {
 	upgrade_from = {
 		dyson_sphere_2
 	}
-	build_time = 3600
+	build_time = @fill_frame_build_time
 	build_cost = {
-		minerals = 50000
+		minerals = @fill_frame_minerals
 	}
+	construction_blocks_others = @block_other_construction
 	monthly_production = {
-		energy = 500
+		energy = @panel_2_energy_production
 	}
 
 	possible = {
 		from = { has_ascension_perk = ap_galactic_wonders }
+	}
+	on_build_complete = {
+		every_system_planet = { 
+			limit = { is_star = no }
+			remove_modifier = dyson_sphere_panel_1_reduced_sun
+			add_modifier = {
+				modifier = "dyson_sphere_panel_2_reduced_sun"
+				days = -1
+			} 
+		}
 	}
 }
 
@@ -196,16 +258,27 @@ dyson_sphere_4 = {
 	upgrade_from = {
 		dyson_sphere_3
 	}
-	build_time = 3600
+	build_time = @fill_frame_build_time
 	build_cost = {
-		minerals = 50000
+		minerals = @fill_frame_minerals
 	}
+	construction_blocks_others = @block_other_construction
 	monthly_production = {
-		energy = 750
+		energy = @panel_3_energy_production
 	}
 
 	possible = {
 		from = { has_ascension_perk = ap_galactic_wonders }
+	}
+	on_build_complete = {
+		every_system_planet = { 
+			limit = { is_star = no }
+			remove_modifier = dyson_sphere_panel_2_reduced_sun
+			add_modifier = {
+				modifier = "dyson_sphere_panel_3_reduced_sun"
+				days = -1
+			} 
+		}
 	}
 }
 
@@ -217,19 +290,42 @@ dyson_sphere_5 = {
 	upgrade_from = {
 		dyson_sphere_4
 	}
-	build_time = 3600
+	build_time = @fill_frame_build_time
 	build_cost = {
-		minerals = 50000
+		minerals = @fill_frame_minerals
 	}
 	monthly_production = {
-		energy = 1000
+		energy = @panel_4_energy_production
 	}
 
 	possible = {
 		from = { has_ascension_perk = ap_galactic_wonders }
 	}
 
+	construction_blocks_others = @block_other_construction
 	on_build_complete = {
+		if {
+			limit = {
+				any_planet = {
+					OR = {
+						is_colony = yes
+						is_under_colonization = yes 
+					}
+					NOT = {
+						has_planet_flag = megastructure
+					}
+				}
+			}
+			
+			every_country = {
+				limit = {
+					has_communications = from
+					NOT = { is_country_type = primitive }
+					NOT = { is_country = from }
+				}
+				add_opinion_modifier = { who = from modifier = opinion_sphere_genocidal }
+			}
+		}
 		every_system_planet = {
 			limit = {
 				OR = {
@@ -244,7 +340,31 @@ dyson_sphere_5 = {
 				is_planet_class = pc_barren
 			}
 			change_pc = pc_barren_cold
-		}		
+		}
+		every_system_planet = {
+			limit = {
+				OR = {
+					is_planet_class = pc_desert
+					is_planet_class = pc_arid
+					is_planet_class = pc_savannah
+					is_planet_class = pc_tropical
+					is_planet_class = pc_continental
+					is_planet_class = pc_ocean
+					is_planet_class = pc_arctic
+					is_planet_class = pc_alpine
+					is_planet_class = pc_gaia
+				}
+			}
+			change_pc = pc_tundra
+		}
+		every_system_planet = { 
+			limit = { is_star = no }
+			remove_modifier = dyson_sphere_panel_3_reduced_sun
+			add_modifier = {
+				modifier = "dyson_sphere_panel_4_reduced_sun"
+				days = -1
+			} 
+		}
 	}
 }
 
@@ -266,36 +386,36 @@ dyson_sphere_restored = {
 	upgrade_from = {
 		dyson_sphere_ruined
 	}
-	build_time = 7200
+	build_time = 5000
 	build_cost = {
-		minerals = 50000
+		minerals = 40000
 	}
 	monthly_production = {
 		energy = 1000
 	}
 
-	possible = {
-		from = { has_technology = tech_mega_engineering }
-		custom_tooltip = {
-			fail_text = "requires_no_existing_dyson_sphere"
-			from = {
-				NOT = {
-					any_owned_megastructure = {
-						OR = {
-							is_megastructure_type = dyson_sphere_0
-							is_megastructure_type = dyson_sphere_1
-							is_megastructure_type = dyson_sphere_2
-							is_megastructure_type = dyson_sphere_3
-							is_megastructure_type = dyson_sphere_4
-							is_megastructure_type = dyson_sphere_5
-							is_megastructure_type = dyson_sphere_restored
-							is_megastructure_type = dyson_sphere_ruined
-						}
-					}
-				}
-			}
-		}			
-	}
+# 	possible = {
+# 		from = { has_technology = tech_mega_engineering }
+# 		custom_tooltip = {
+# 			fail_text = "requires_no_existing_dyson_sphere"
+# 			from = {
+# 				NOT = {
+# 					any_owned_megastructure = {
+# 						OR = {
+# 							is_megastructure_type = dyson_sphere_0
+# 							is_megastructure_type = dyson_sphere_1
+# 							is_megastructure_type = dyson_sphere_2
+# 							is_megastructure_type = dyson_sphere_3
+# 							is_megastructure_type = dyson_sphere_4
+# 							is_megastructure_type = dyson_sphere_5
+# 							is_megastructure_type = dyson_sphere_restored
+# 							is_megastructure_type = dyson_sphere_ruined
+# 						}
+# 					}
+# 				}
+# 			}
+# 		}
+# 	}
 
 	on_build_start = {
 		fromfrom = {
@@ -304,6 +424,28 @@ dyson_sphere_restored = {
 	}
 
 	on_build_complete = {
+		if {
+			limit = {
+				any_planet = {
+					OR = {
+						is_colony = yes
+						is_under_colonization = yes 
+					}
+					NOT = {
+						has_planet_flag = megastructure
+					}
+				}
+			}
+			
+			every_country = {
+				limit = {
+					has_communications = from
+					NOT = { is_country_type = primitive }
+					NOT = { is_country = from }
+				}
+				add_opinion_modifier = { who = from modifier = opinion_sphere_genocidal }
+			}
+		}
 		every_system_planet = {
 			limit = {
 				OR = {
@@ -318,6 +460,34 @@ dyson_sphere_restored = {
 				is_planet_class = pc_barren
 			}
 			change_pc = pc_barren_cold
+		}
+		every_system_planet = {
+			limit = {
+				OR = {
+					is_planet_class = pc_desert
+					is_planet_class = pc_arid
+					is_planet_class = pc_savannah
+					is_planet_class = pc_tropical
+					is_planet_class = pc_continental
+					is_planet_class = pc_ocean
+					is_planet_class = pc_arctic
+					is_planet_class = pc_alpine
+					is_planet_class = pc_gaia
+				}
+			}
+			change_pc = pc_tundra
+		}
+		every_system_planet = { 
+			limit = {
+				AND = {
+					is_star = no 
+					NOT = {has_modifier = dyson_sphere_panel_4_reduced_sun}
+				}
+			}
+			add_modifier = {
+				modifier = "dyson_sphere_panel_4_reduced_sun"
+				days = -1
+			} 
 		}
 		every_system_ambient_object = { destroy_ambient_object = this }
 		from = {
