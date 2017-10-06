@@ -60,6 +60,7 @@ spy_orb_0 = {
 							is_megastructure_type = spy_orb_3
 							is_megastructure_type = spy_orb_4
 							is_megastructure_type = spy_orb_restored
+							is_megastructure_type = spy_orb_ruined
 						}
 					}
 				}

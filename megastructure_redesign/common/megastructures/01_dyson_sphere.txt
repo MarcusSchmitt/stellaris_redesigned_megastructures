@@ -39,6 +39,25 @@ dyson_sphere_0 = {
 			is_inside_border = from
 		}
 		custom_tooltip = {
+			fail_text = "requires_no_existing_dyson_sphere"
+			from = {
+				NOT = {
+					any_owned_megastructure = {
+						OR = {
+							is_megastructure_type = dyson_sphere_0
+							is_megastructure_type = dyson_sphere_1
+							is_megastructure_type = dyson_sphere_2
+							is_megastructure_type = dyson_sphere_3
+							is_megastructure_type = dyson_sphere_4
+							is_megastructure_type = dyson_sphere_5
+							is_megastructure_type = dyson_sphere_restored
+							is_megastructure_type = dyson_sphere_ruined
+						}
+					}
+				}
+			}
+		}
+		custom_tooltip = {
 			fail_text = "requires_surveyed_system"
 			NOT = {
 				any_planet = {
@@ -263,16 +282,35 @@ dyson_sphere_restored = {
 	upgrade_from = {
 		dyson_sphere_ruined
 	}
-	build_time = 3600
+	build_time = 5000
 	build_cost = {
 		minerals = 40000
 	}
 	monthly_production = {
-		energy = 400
+		energy = 1000
 	}
 
 	possible = {
 		from = { has_technology = tech_mega_engineering }
+		custom_tooltip = {
+			fail_text = "requires_no_existing_dyson_sphere"
+			from = {
+				NOT = {
+					any_owned_megastructure = {
+						OR = {
+							is_megastructure_type = dyson_sphere_0
+							is_megastructure_type = dyson_sphere_1
+							is_megastructure_type = dyson_sphere_2
+							is_megastructure_type = dyson_sphere_3
+							is_megastructure_type = dyson_sphere_4
+							is_megastructure_type = dyson_sphere_5
+							is_megastructure_type = dyson_sphere_restored
+							is_megastructure_type = dyson_sphere_ruined
+						}
+					}
+				}
+			}
+		}
 	}
 
 	on_build_start = {

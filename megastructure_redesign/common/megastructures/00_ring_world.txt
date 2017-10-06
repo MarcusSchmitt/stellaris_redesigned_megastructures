@@ -132,7 +132,7 @@ ring_world_2_intermediate = {
 			orbit_distance = 45
 			owner = from
 			graphical_culture = fromfrom
-			location = planet
+			location = star
 		}
 		spawn_megastructure = {
 			name = "NAME_Ring_Section_B"
@@ -141,7 +141,7 @@ ring_world_2_intermediate = {
 			orbit_distance = 45
 			owner = from
 			graphical_culture = fromfrom
-			location = planet
+			location = star
 		}
 		spawn_megastructure = {
 			name = "NAME_Ring_Section_C"
@@ -150,7 +150,7 @@ ring_world_2_intermediate = {
 			orbit_distance = 45
 			owner = from
 			graphical_culture = fromfrom
-			location = planet
+			location = star
 		}
 		spawn_megastructure = {
 			name = "NAME_Ring_Section_D"
@@ -159,7 +159,7 @@ ring_world_2_intermediate = {
 			orbit_distance = 45
 			owner = from
 			graphical_culture = fromfrom
-			location = planet
+			location = star
 		}
 	}
 }
@@ -258,9 +258,9 @@ ring_world_3_intermediate = {
 				set_planet_flag = megastructure
 			}
 		}
-		#fromfrom.planet = {
-		#	set_planet_flag = has_megastructure
-		#}
+		fromfrom.planet = {
+			set_planet_flag = has_megastructure
+		}
 		event_target:ring_section = {
 			set_planet_flag = has_megastructure
 		}
