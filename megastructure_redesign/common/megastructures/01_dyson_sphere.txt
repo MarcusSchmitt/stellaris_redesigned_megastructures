@@ -72,7 +72,7 @@ dyson_sphere_0 = {
 			}
 		}
 		custom_tooltip = {
-			fail_text = "requires_no_capital"
+			fail_text = "requires_not_capital_system"
 			NOT = {
 				any_planet = {
 						is_capital = yes
@@ -175,10 +175,10 @@ dyson_sphere_1 = {
 	}
 	on_build_cancel = {}
 	on_build_complete = {
-		set_star_flag = has_dyson_frame
+		set_star_flag = dyson_sphere_frame_built
 		every_system_planet = { 
 			limit = { is_star = no }
-			set_planet_flag = has_dyson_frame
+			set_planet_flag = dyson_sphere_frame_built
 			add_modifier = {
 				modifier = "dyson_sphere_frame_reduced_sun"
 				days = -1
@@ -209,13 +209,13 @@ dyson_sphere_2 = {
 	}
 	
 	on_build_complete = {
-		remove_star_flag = has_dyson_frame
-		set_star_flag = has_dyson_panel_1
+		remove_star_flag = dyson_sphere_frame_built
+		set_star_flag = dyson_sphere_panel_1_built
 		every_system_planet = { 
 			limit = { is_star = no }
 			remove_modifier = dyson_sphere_frame_reduced_sun
-			remove_planet_flag = has_dyson_frame
-			set_planet_flag = has_dyson_panel_1
+			remove_planet_flag = dyson_sphere_frame_built
+			set_planet_flag = dyson_sphere_panel_1_built
 			add_modifier = {
 				modifier = "dyson_sphere_panel_1_reduced_sun"
 				days = -1
@@ -245,13 +245,13 @@ dyson_sphere_3 = {
 		from = { has_ascension_perk = ap_galactic_wonders }
 	}
 	on_build_complete = {
-		remove_star_flag = has_dyson_panel_1
-		set_star_flag = has_dyson_panel_2
+		remove_star_flag = dyson_sphere_panel_1_built
+		set_star_flag = dyson_sphere_panel_2_built
 		every_system_planet = { 
 			limit = { is_star = no }
 			remove_modifier = dyson_sphere_panel_1_reduced_sun
-			remove_planet_flag = has_dyson_panel_1
-			set_planet_flag = has_dyson_panel_2
+			remove_planet_flag = dyson_sphere_panel_1_built
+			set_planet_flag = dyson_sphere_panel_2_built
 			add_modifier = {
 				modifier = "dyson_sphere_panel_2_reduced_sun"
 				days = -1
@@ -281,13 +281,13 @@ dyson_sphere_4 = {
 		from = { has_ascension_perk = ap_galactic_wonders }
 	}
 	on_build_complete = {
-		remove_star_flag = has_dyson_panel_2
-		set_star_flag = has_dyson_panel_3
+		remove_star_flag = dyson_sphere_panel_2_built
+		set_star_flag = dyson_sphere_panel_3_built
 		every_system_planet = { 
 			limit = { is_star = no }
 			remove_modifier = dyson_sphere_panel_2_reduced_sun
-			remove_planet_flag = has_dyson_panel_2
-			set_planet_flag = has_dyson_panel_3
+			remove_planet_flag = dyson_sphere_panel_2_built
+			set_planet_flag = dyson_sphere_panel_3_built
 			add_modifier = {
 				modifier = "dyson_sphere_panel_3_reduced_sun"
 				days = -1
@@ -345,6 +345,7 @@ dyson_sphere_5 = {
 				OR = {
 					is_planet_class = pc_molten
 					is_planet_class = pc_toxic
+					is_planet_class = pc_nuked
 				}
 			}
 			change_pc = pc_frozen
@@ -365,17 +366,31 @@ dyson_sphere_5 = {
 					is_planet_class = pc_continental
 					is_planet_class = pc_ocean
 					is_planet_class = pc_arctic
+					is_planet_class = pc_tundra
 					is_planet_class = pc_alpine
 					is_planet_class = pc_gaia
 				}
 			}
-			change_pc = pc_tundra
+			if = {
+				limit = {
+					OR = {
+						is_colony = yes
+						is_under_colonization = yes 
+					}
+				}
+				destroy_colony = { keep_buildings = no }
+			}
+			change_pc = pc_barren_cold
+			add_modifier = {
+				modifier = "terraforming_candidate"
+				days = -1
+			}
 		}
 		every_system_planet = { 
 			limit = { is_star = no }
 			remove_modifier = dyson_sphere_panel_3_reduced_sun
-			remove_planet_flag = has_dyson_panel_3
-			set_planet_flag = has_dyson_panel_4
+			remove_planet_flag = dyson_sphere_panel_3_built
+			set_planet_flag = dyson_sphere_panel_4_built
 			add_modifier = {
 				modifier = "dyson_sphere_panel_4_reduced_sun"
 				days = -1
@@ -487,11 +502,17 @@ dyson_sphere_restored = {
 					is_planet_class = pc_continental
 					is_planet_class = pc_ocean
 					is_planet_class = pc_arctic
+					is_planet_class = pc_tundra
 					is_planet_class = pc_alpine
 					is_planet_class = pc_gaia
 				}
 			}
-			change_pc = pc_tundra
+			destroy_colony = { keep_buildings = no }
+			change_pc = pc_barren_cold
+			add_modifier = {
+				modifier = "terraforming_candidate"
+				days = -1
+			}
 		}
 		every_system_planet = { 
 			limit = {
@@ -500,13 +521,13 @@ dyson_sphere_restored = {
 					NOT = {has_modifier = dyson_sphere_panel_4_reduced_sun}
 				}
 			}
-			set_planet_flag = has_dyson_panel_4
+			set_planet_flag = dyson_sphere_panel_4_built
 			add_modifier = {
 				modifier = "dyson_sphere_panel_4_reduced_sun"
 				days = -1
 			} 
 		}
-		set_star_flag = has_dyson_panel_4
+		set_star_flag = dyson_sphere_panel_4_built
 		every_system_ambient_object = { destroy_ambient_object = this }
 		from = {
 			country_event = { id = utopia.2011 }

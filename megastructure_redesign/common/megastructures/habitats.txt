@@ -6,7 +6,7 @@ habitat_0 = {
 	portrait = "GFX_megastructure_construction_background"
 	place_entity_on_planet_plane = yes
 	entity_offset = { x = -7 y = -7 }
-	build_time = 1800
+	build_time = 10
 	build_cost = {
 		minerals = 5000
 		influence = 150
@@ -115,73 +115,50 @@ habitat_0 = {
 				copy_orbital_tile = fromfrom.planet
 				set_planet_flag = megastructure
 				set_planet_flag = habitat
-			}
-		}
-		if = {
-			limit = {
-					fromfrom.planet = {has_planet_flag = has_dyson_frame}
-			}
-			every_system_planet = {
-				limit = {has_planet_flag = habitat}
-				add_modifier = {
-					modifier = "dyson_sphere_panel_1_reduced_sun"
-					days = -1
+				if = {
+					limit = {
+						fromfrom.planet = {has_planet_flag = dyson_sphere_frame_built}
+					}
+					add_modifier = {
+						modifier = "dyson_sphere_frame_reduced_sun"
+						days = -1
+					}
 				}
-			}
-		}
-		if = {
-			limit = {
-				fromfrom.planet = {
-					has_planet_flag = has_dyson_frame
+				if = {
+					limit = {
+						fromfrom.planet = {has_planet_flag = dyson_sphere_panel_1_built}
+					}
+					add_modifier = {
+						modifier = "dyson_sphere_panel_1_reduced_sun"
+						days = -1
+					}
 				}
-			}
-			every_system_planet = {
-				limit = {NOT={has_planet_flag = has_dyson_frame}}
-				add_modifier = {
-					modifier = dyson_sphere_panel_1_reduced_sun
-					days = -1
+				if = {
+					limit = {
+						fromfrom.planet = {has_planet_flag = dyson_sphere_panel_2_built}
+					}
+					add_modifier = {
+						modifier = "dyson_sphere_panel_2_reduced_sun"
+						days = -1
+					}
 				}
-			}
-		}
-		if = {
-			limit = {
-				fromfrom.planet = {
-					has_planet_flag = has_dyson_frame
+				if = {
+					limit = {
+						fromfrom.planet = {has_planet_flag = dyson_sphere_panel_3_built}
+					}
+					add_modifier = {
+						modifier = "dyson_sphere_panel_3_reduced_sun"
+						days = -1
+					}
 				}
-			}
-			every_system_planet = {
-				limit = {NOT={has_planet_flag = has_dyson_frame}}
-				add_modifier = {
-					modifier = dyson_sphere_panel_1_reduced_sun
-					days = -1
-				}
-			}
-		}
-		if = {
-			limit = {
-				fromfrom.planet = {
-					has_planet_flag = has_dyson_frame
-				}
-			}
-			every_system_planet = {
-				limit = {NOT={has_planet_flag = has_dyson_frame}}
-				add_modifier = {
-					modifier = dyson_sphere_panel_1_reduced_sun
-					days = -1
-				}
-			}
-		}
-		if = {
-			limit = {
-				fromfrom.planet = {
-					has_planet_flag = has_dyson_frame
-				}
-			}
-			every_system_planet = {
-				limit = {NOT={has_planet_flag = has_dyson_frame}}
-				add_modifier = {
-					modifier = dyson_sphere_panel_1_reduced_sun
-					days = -1
+				if = {
+					limit = {
+						fromfrom.planet = {has_planet_flag = dyson_sphere_panel_4_built}
+					}
+					add_modifier = {
+						modifier = "dyson_sphere_panel_4_reduced_sun"
+						days = -1
+					}
 				}
 			}
 		}

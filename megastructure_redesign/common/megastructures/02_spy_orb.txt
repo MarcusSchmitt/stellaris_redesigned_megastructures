@@ -2,6 +2,7 @@
 @phase_0_entity_y = -5
 @entity_x = -15
 @entity_y = -15
+@block_other_construction = no
 spy_orb_0 = {
 	entity = "construction_platform_entity"
 	construction_entity = "construction_platform_entity"
@@ -14,7 +15,7 @@ spy_orb_0 = {
 		minerals = 10000
 		influence = 300
 	}
-
+	construction_blocks_others = @block_other_construction
 	maintenance = {
 		energy = 5
 	}
@@ -39,24 +40,24 @@ spy_orb_0 = {
 				}
 			}
 		}
-		custom_tooltip = {
-			fail_text = "requires_no_existing_spyorb"
-			from = {
-				NOT = {
-					any_owned_megastructure = {
-						OR = {
-							is_megastructure_type = spy_orb_0
-							is_megastructure_type = spy_orb_1
-							is_megastructure_type = spy_orb_2
-							is_megastructure_type = spy_orb_3
-							is_megastructure_type = spy_orb_4
-							is_megastructure_type = spy_orb_restored
-							is_megastructure_type = spy_orb_ruined
-						}
-					}
-				}
-			}
-		}
+# 		custom_tooltip = {
+# 			fail_text = "requires_no_existing_spyorb"
+# 			from = {
+# 				NOT = {
+# 					any_owned_megastructure = {
+# 						OR = {
+# 							is_megastructure_type = spy_orb_0
+# 							is_megastructure_type = spy_orb_1
+# 							is_megastructure_type = spy_orb_2
+# 							is_megastructure_type = spy_orb_3
+# 							is_megastructure_type = spy_orb_4
+# 							is_megastructure_type = spy_orb_restored
+# 							is_megastructure_type = spy_orb_ruined
+# 						}
+# 					}
+# 				}
+# 			}
+# 		}
 		#custom_tooltip = {
 		#	fail_text = "requires_no_existing_megastructure"
 		#	NOT = { has_any_megastructure = yes }
@@ -91,21 +92,29 @@ spy_orb_0 = {
 				is_star = yes
 			}
 
+# 			custom_tooltip = {
+# 				fail_text = "requires_no_existing_megastructure"
+# 				solar_system = {
+# 					NOR = {
+# 						has_any_megastructure = yes
+# 						any_planet = {
+# 							OR = {
+# 								is_planet_class = pc_ringworld_habitable
+# 								is_planet_class = pc_ringworld_habitable_damaged
+# 								is_planet_class = pc_ringworld_tech
+# 								is_planet_class = pc_ringworld_tech_damaged
+# 								is_planet_class = pc_ringworld_seam
+# 								is_planet_class = pc_ringworld_seam_damaged
+# 							}
+# 						}
+# 					}
+# 				}
+# 			}
 			custom_tooltip = {
-				fail_text = "requires_no_existing_megastructure"
+				fail_text = "requires_no_spy_orb"
 				solar_system = {
-					NOR = {
-						has_any_megastructure = yes
-						any_planet = {
-							OR = {
-								is_planet_class = pc_ringworld_habitable
-								is_planet_class = pc_ringworld_habitable_damaged
-								is_planet_class = pc_ringworld_tech
-								is_planet_class = pc_ringworld_tech_damaged
-								is_planet_class = pc_ringworld_seam
-								is_planet_class = pc_ringworld_seam_damaged
-							}
-						}
+					NOT= {
+						has_star_flag = spy_orb_built
 					}
 				}
 			}
@@ -275,24 +284,24 @@ spy_orb_restored = {
 		from = { 
 			has_technology = tech_mega_engineering
 		}
-		custom_tooltip = {
-			fail_text = "requires_no_existing_spyorb"
-			from = {
-				NOT = {
-					any_owned_megastructure = {
-						OR = {
-							is_megastructure_type = spy_orb_0
-							is_megastructure_type = spy_orb_1
-							is_megastructure_type = spy_orb_2
-							is_megastructure_type = spy_orb_3
-							is_megastructure_type = spy_orb_4
-							is_megastructure_type = spy_orb_restored
-							is_megastructure_type = spy_orb_ruined
-						}
-					}
-				}
-			}
-		}
+# 		custom_tooltip = {
+# 			fail_text = "requires_no_existing_spyorb"
+# 			from = {
+# 				NOT = {
+# 					any_owned_megastructure = {
+# 						OR = {
+# 							is_megastructure_type = spy_orb_0
+# 							is_megastructure_type = spy_orb_1
+# 							is_megastructure_type = spy_orb_2
+# 							is_megastructure_type = spy_orb_3
+# 							is_megastructure_type = spy_orb_4
+# 							is_megastructure_type = spy_orb_restored
+# 							is_megastructure_type = spy_orb_ruined
+# 						}
+# 					}
+# 				}
+# 			}
+# 		}
 	}
 
 	on_build_start = {
