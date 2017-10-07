@@ -1,0 +1,61 @@
+# buildings for habitats
+
+building_asteroid_capital = {
+    base_buildtime = 1080
+    
+    cost = {
+    }
+    
+    produced_resources = {
+        unity = 10
+    }
+    
+    produced_resource_trigger = {
+        modifier = {
+            has_non_swapped_tradition = tr_expansion_colonization_fever
+            has_swapped_tradition = tr_expansion_colonization_fever_machine
+            has_swapped_tradition = tr_expansion_colonization_fever_hive
+            resources = {
+                unity = 1
+            }
+        }
+    }
+    
+    planet_modifier = {
+        pop_government_ethic_attraction = 0.2
+    }
+    
+    potential = {
+        planet = {
+            is_planet_class = pc_asteroid_hub
+        }    
+    }
+    
+    planet_unique = yes
+    capital = yes
+    
+    ai_replace = no
+}
+
+building_asteroid_astro_mining_facility = {
+    base_buildtime = 720
+    
+    cost = {
+        minerals = 200
+    }
+    
+    potential = {
+        planet = {
+            is_planet_class = pc_asteroid_hub
+            has_building = "building_asteroid_capital"
+        }    
+    }
+    
+    produced_resources = {
+        minerals = 50
+    }
+    
+    required_resources = {
+        energy = 5
+    }
+}

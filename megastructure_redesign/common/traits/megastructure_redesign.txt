@@ -1,0 +1,12 @@
+trait_pc_asteroid_hub_preference = {
+    icon = "gfx/interface/icons/traits/trait_pc_ring_preference.dds"
+    modification = no
+    allowed_classes = { HUM MAM REP AVI ART MOL FUN PLANT  PRE_MAM PRE_REP PRE_AVI PRE_ART PRE_MOL PRE_FUN }
+    sorting_priority = 30
+    modifier = {
+        pc_asteroid_hub_habitability = 1.0
+    }
+    ai_weight = {
+        weight = 0
+    }
+}

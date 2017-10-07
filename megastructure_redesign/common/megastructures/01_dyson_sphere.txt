@@ -177,7 +177,12 @@ dyson_sphere_1 = {
 	on_build_complete = {
 		set_star_flag = dyson_sphere_frame_built
 		every_system_planet = { 
-			limit = { is_star = no }
+			limit = { 
+				NOR = {
+					is_star = yes
+					is_asteroid = yes
+				}
+			}
 			set_planet_flag = dyson_sphere_frame_built
 			add_modifier = {
 				modifier = "dyson_sphere_frame_reduced_sun"
