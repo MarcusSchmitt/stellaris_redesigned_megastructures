@@ -1,19 +1,59 @@
 # see README.txt for example
+@initial_build_time = 720
+@level_1_build_time = 1800
+@level_2_build_time = 1080
+@level_3_build_time = 720
+@level_4_build_time = 720
+@level_5_build_time = 1080
+
+@initial_build_minerals = 1000
+@level_1_build_minerals = 0
+@level_2_build_minerals = 0
+@level_3_build_minerals = 1500
+@level_4_build_minerals = 1500
+@level_5_build_minerals = 2500
+
+@initial_build_energy = 0
+@level_1_build_energy = 1000
+@level_2_build_energy = 1000
+@level_3_build_energy = 250
+@level_4_build_energy = 250
+@level_5_build_energy = 750
+
+@initial_energy_maintenance = 5
+@level_1_energy_maintenance = 10
+@level_2_energy_maintenance = 20
+@level_3_energy_maintenance = 35
+@level_4_energy_maintenance = 50
+@level_5_energy_maintenance = 50
+
+@level_1_mineral_production = 25
+@level_2_mineral_production = 50
+@level_3_mineral_production = 100
+@level_4_mineral_production = 150
+@level_5_mineral_production = 250
+@block_other_construction = no
 
 asteroidhub_0 = {
-    entity = ""
-    construction_entity = "orbital_habitat_entity"
+    entity = "construction_platform_entity"
+    construction_entity = "construction_platform_entity"
     portrait = "GFX_megastructure_construction_background"
-    place_entity_on_planet_plane = yes
-    build_time = 1800
+    place_entity_on_planet_plane = no
+    entity_offset = { x = -3 y = -3 }
+    build_time = @initial_build_time
     build_cost = {
-        energy = 5000
+        minerals = @initial_build_minerals 
+        energy = @initial_build_energy
         influence = 150
     }
-    construction_blocks_others = no
+    construction_blocks_others = @block_other_construction
 
     potential = {
         has_ascension_perk = ap_voidborn
+    }
+
+    maintenance = {
+        energy = @initial_energy_maintenance
     }
 
     possible = {
@@ -62,7 +102,7 @@ asteroidhub_0 = {
              # balance for habitats
             custom_tooltip = {
                 fail_text = "requires_asteroid"
-                NOT = {is_asteroid = yes}
+               is_asteroid = yes
             }
         } # use these for all non-star megastructures
     }
@@ -75,21 +115,150 @@ asteroidhub_0 = {
     on_build_cancel = {}
     
     on_build_complete = {
-        remove_megastructure = fromfrom
+        set_star_flag = asteroid_mine_built
         fromfrom.planet = {
-            change_pc = pc_asteroid_hub
-            change_planet_size = 5
-            set_planet_flag = megastructure
-            set_planet_flag = habitat
-            while = {
-                limit = {
-                    any_tile = { has_blocker = yes }
-                }
-                random_tile = {
-                    limit = { has_blocker = yes }
-                    remove_blocker = yes
-                }
-            }
+            set_planet_flag = has_megastructure
+            remove_planet = yes
         }
     }
+}
+
+asteroidhub_1 = {
+    entity = "orbital_habitat_entity"
+    construction_entity = "orbital_habitat_entity"
+    portrait = "GFX_megastructure_construction_background"
+    upgrade_from = {
+        asteroidhub_0
+    }
+    build_time = @level_1_build_time
+    build_cost = {
+        minerals = @level_1_build_minerals
+        energy = @level_1_build_energy
+    }
+    construction_blocks_others = @block_other_construction
+    
+    monthly_production = {
+        minerals = @level_1_mineral_production
+    }
+    maintenance = {
+        energy = @level_1_energy_maintenance
+    }
+    possible = {
+        from = { has_ascension_perk = ap_voidborn }
+    }
+    on_build_start = {}
+    on_build_cancel = {}
+    on_build_complete = {}
+}
+
+asteroidhub_2 = {
+    entity = "orbital_habitat_entity"
+    construction_entity = "orbital_habitat_entity"
+    portrait = "GFX_megastructure_construction_background"
+    upgrade_from = {
+        asteroidhub_1
+    }
+    build_time = @level_2_build_time
+    build_cost = {
+        minerals = @level_2_build_minerals
+        energy = @level_2_build_energy
+    }
+    construction_blocks_others = @block_other_construction
+    
+    monthly_production = {
+        minerals = @level_2_mineral_production
+    }
+    maintenance = {
+        energy = @level_2_energy_maintenance
+    }
+    possible = {
+        from = { has_ascension_perk = ap_voidborn }
+    }
+    on_build_start = {}
+    on_build_cancel = {}
+    on_build_complete = {}
+}
+
+asteroidhub_3 = {
+    entity = "orbital_habitat_entity"
+    construction_entity = "orbital_habitat_entity"
+    portrait = "GFX_megastructure_construction_background"
+    upgrade_from = {
+        asteroidhub_2
+    }
+    build_time = @level_3_build_time
+    build_cost = {
+        minerals = @level_3_build_minerals
+        energy = @level_3_build_energy
+    }
+    construction_blocks_others = @block_other_construction
+    
+    monthly_production = {
+        minerals = @level_3_mineral_production
+    }
+    maintenance = {
+        energy = @level_3_energy_maintenance
+    }
+    possible = {
+        from = { has_ascension_perk = ap_voidborn }
+    }
+    on_build_start = {}
+    on_build_cancel = {}
+    on_build_complete = {}
+}
+
+asteroidhub_4 = {
+    entity = "orbital_habitat_entity"
+    construction_entity = "orbital_habitat_entity"
+    portrait = "GFX_megastructure_construction_background"
+    upgrade_from = {
+        asteroidhub_3
+    }
+    build_time = @level_4_build_time
+    build_cost = {
+        minerals = @level_4_build_minerals
+        energy = @level_4_build_energy
+    }
+    construction_blocks_others = @block_other_construction
+    
+    monthly_production = {
+        minerals = @level_4_mineral_production
+    }
+    maintenance = {
+        energy = @level_4_energy_maintenance
+    }
+    possible = {
+        from = { has_ascension_perk = ap_voidborn }
+    }
+    on_build_start = {}
+    on_build_cancel = {}
+    on_build_complete = {}
+}
+
+asteroidhub_5 = {
+    entity = "orbital_habitat_entity"
+    construction_entity = "orbital_habitat_entity"
+    portrait = "GFX_megastructure_construction_background"
+    upgrade_from = {
+        asteroidhub_4
+    }
+    build_time = @level_5_build_time
+    build_cost = {
+        minerals = @level_5_build_minerals
+        energy = @level_5_build_energy
+    }
+    construction_blocks_others = @block_other_construction
+    
+    monthly_production = {
+        minerals = @level_5_mineral_production
+    }
+    maintenance = {
+        energy = @level_5_energy_maintenance
+    }
+    possible = {
+        from = { has_ascension_perk = ap_voidborn }
+    }
+    on_build_start = {}
+    on_build_cancel = {}
+    on_build_complete = {}
 }

@@ -2,11 +2,11 @@
 #Inspired by ashall_123 mod Megastructure Placement   ID: 900785559#
 #modified by ManyFace mod Redesigned Megastructures   ID: 910695494#
 ####################################################################
-@stage_1_build_time = 360
+@stage_1_build_time = 720
 @stage_2_build_time = 9000
-@stage_3_build_time = 720
+@stage_3_build_time = 1080
 @repair_time = 3600
-@stage_1_build_minerals = 500
+@stage_1_build_minerals = 1000
 @stage_2_build_minerals = 50000
 @stage_3_build_minerals = 15000
 @repair_minerals = 20000
@@ -58,7 +58,10 @@ ring_world_1 = {
 		}
 		custom_tooltip = {
 			fail_text = "requires_no_think_tank"
-			NOT = {has_star_flag = think_tank_built}
+			NOT = {
+				has_star_flag = think_tank_built
+				has_star_flag = asteroid_mine_built
+			}
 		}
 		custom_tooltip = {
 			fail_text = "requires_not_capital_system"

@@ -9,10 +9,10 @@ spy_orb_0 = {
 	portrait = "GFX_megastructure_construction_background"
 	place_entity_on_planet_plane = no
 	entity_offset = { x = @phase_0_entity_x y = @phase_0_entity_y }
-	build_time = 1800
+	build_time = 720
 	
 	build_cost = {
-		minerals = 10000
+		minerals = 1000
 		influence = 300
 	}
 	construction_blocks_others = @block_other_construction
