@@ -5,6 +5,8 @@ l_english:
 
 requires_not_capital_system:1 "$TRIGGER_FAIL$ Cannot erase planets in capital system. Move capital to another system first."
 requires_no_think_tank:1 "$TRIGGER_FAIL$ Cannot build ring world in system with a science nexus."
+requires_no_spy_orb:1 "$TRIGGER_FAIL$ Only one Sentry Array per solar system"
+requires_no_ring_world:1 "$TRIGGER_FAIL$ Can not build Science Nexus in system with Ring World"
 requires_no_star_megastructure:1 "$TRIGGER_FAIL$ Can only build ring world or dyson sphere around the central star."
 opinion_ring_genocidal:1 "Ring World Colony Recycler."
 opinion_sphere_genocidal:1 "Dyson Sphere Colony Freezer."
