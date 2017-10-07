@@ -15,6 +15,12 @@
 @panel_2_energy_production = 300
 @panel_3_energy_production = 500
 @panel_4_energy_production = 1000
+
+@level_1_energy_storage = 4000
+@level_2_energy_storage = 5500
+@level_3_energy_storage = 7000
+@level_4_energy_storage = 8500
+@level_5_energy_storage = 10000
 #Dyson Sphere Site 
 dyson_sphere_0 = {
 	entity = "construction_platform_entity"
@@ -156,7 +162,9 @@ dyson_sphere_1 = {
 		minerals = @frame_build_minerals
 	}
 	construction_blocks_others = @block_other_construction
-
+	country_modifier = {
+		max_energy = @level_1_energy_storage
+	}
 	possible = {
 		from = { has_ascension_perk = ap_galactic_wonders }
 	}
@@ -209,7 +217,9 @@ dyson_sphere_2 = {
 	monthly_production = {
 		energy = @panel_1_energy_production
 	}
-
+	country_modifier = {
+		max_energy = @level_2_energy_storage
+	}
 	possible = {
 		from = { has_ascension_perk = ap_galactic_wonders }
 	}
@@ -246,7 +256,9 @@ dyson_sphere_3 = {
 	monthly_production = {
 		energy = @panel_2_energy_production
 	}
-
+	country_modifier = {
+		max_energy = @level_3_energy_storage
+	}
 	possible = {
 		from = { has_ascension_perk = ap_galactic_wonders }
 	}
@@ -282,7 +294,9 @@ dyson_sphere_4 = {
 	monthly_production = {
 		energy = @panel_3_energy_production
 	}
-
+	country_modifier = {
+		max_energy = @level_4_energy_storage
+	}
 	possible = {
 		from = { has_ascension_perk = ap_galactic_wonders }
 	}
@@ -317,7 +331,9 @@ dyson_sphere_5 = {
 	monthly_production = {
 		energy = @panel_4_energy_production
 	}
-
+	country_modifier = {
+		max_energy = @level_5_energy_storage
+	}
 	possible = {
 		from = { has_ascension_perk = ap_galactic_wonders }
 	}
@@ -430,7 +446,9 @@ dyson_sphere_restored = {
 	monthly_production = {
 		energy = 1000
 	}
-
+	country_modifier = {
+		max_energy = @level_5_energy_storage
+	}
 # 	possible = {
 # 		from = { has_technology = tech_mega_engineering }
 # 		custom_tooltip = {

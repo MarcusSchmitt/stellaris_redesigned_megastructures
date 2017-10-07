@@ -32,6 +32,13 @@
 @level_3_mineral_production = 100
 @level_4_mineral_production = 150
 @level_5_mineral_production = 250
+
+@level_1_mineral_storage = 1000
+@level_2_mineral_storage = 2000
+@level_3_mineral_storage = 3000
+@level_4_mineral_storage = 4000
+@level_5_mineral_storage = 5000
+
 @block_other_construction = no
 
 asteroidhub_0 = {
@@ -140,6 +147,9 @@ asteroidhub_1 = {
     monthly_production = {
         minerals = @level_1_mineral_production
     }
+    country_modifier = {
+        max_minerals = @level_1_mineral_storage
+    }
     maintenance = {
         energy = @level_1_energy_maintenance
     }
@@ -167,6 +177,9 @@ asteroidhub_2 = {
     
     monthly_production = {
         minerals = @level_2_mineral_production
+    }
+    country_modifier = {
+        max_minerals = @level_2_mineral_storage
     }
     maintenance = {
         energy = @level_2_energy_maintenance
@@ -196,6 +209,9 @@ asteroidhub_3 = {
     monthly_production = {
         minerals = @level_3_mineral_production
     }
+    country_modifier = {
+        max_minerals = @level_3_mineral_storage
+    }
     maintenance = {
         energy = @level_3_energy_maintenance
     }
@@ -224,6 +240,9 @@ asteroidhub_4 = {
     monthly_production = {
         minerals = @level_4_mineral_production
     }
+    country_modifier = {
+        max_minerals = @level_4_mineral_storage
+    }
     maintenance = {
         energy = @level_4_energy_maintenance
     }
@@ -251,6 +270,9 @@ asteroidhub_5 = {
     
     monthly_production = {
         minerals = @level_5_mineral_production
+    }
+    country_modifier = {
+        max_minerals = @level_5_mineral_storage
     }
     maintenance = {
         energy = @level_5_energy_maintenance
