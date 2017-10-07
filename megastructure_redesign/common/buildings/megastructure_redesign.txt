@@ -16,7 +16,7 @@ building_asteroid_capital = {
             has_swapped_tradition = tr_expansion_colonization_fever_machine
             has_swapped_tradition = tr_expansion_colonization_fever_hive
             resources = {
-                unity = 1
+                unity = 3
             }
         }
     }
