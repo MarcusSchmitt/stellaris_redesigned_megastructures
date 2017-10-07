@@ -7,18 +7,18 @@
 @level_5_build_time = 1080
 
 @initial_build_minerals = 1000
-@level_1_build_minerals = 0
-@level_2_build_minerals = 0
-@level_3_build_minerals = 1500
-@level_4_build_minerals = 1500
-@level_5_build_minerals = 2500
+@level_1_build_minerals = 1500
+@level_2_build_minerals = 1500
+@level_3_build_minerals = 2500
+@level_4_build_minerals = 2500
+@level_5_build_minerals = 3500
 
 @initial_build_energy = 0
 @level_1_build_energy = 1000
 @level_2_build_energy = 1000
-@level_3_build_energy = 250
-@level_4_build_energy = 250
-@level_5_build_energy = 750
+@level_3_build_energy = 500
+@level_4_build_energy = 500
+@level_5_build_energy = 1500
 
 @initial_energy_maintenance = 5
 @level_1_energy_maintenance = 10
