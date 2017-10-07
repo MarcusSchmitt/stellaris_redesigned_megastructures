@@ -1,0 +1,30 @@
+namespace = megastructure_redesign
+planet_event = {
+    id = megastructure_redesign.100
+    hide_window = yes
+    fire_only_once = no
+    trigger = {
+        AND = {
+            has_planet_flag = dyson_sphere_panel_4_built
+            OR = {
+                is_planet_class = pc_desert
+                is_planet_class = pc_arid
+                is_planet_class = pc_savannah
+                is_planet_class = pc_tropical
+                is_planet_class = pc_continental
+                is_planet_class = pc_ocean
+                is_planet_class = pc_tundra
+                is_planet_class = pc_alpine
+                is_planet_class = pc_gaia
+                is_planet_class = pc_nuked
+                is_planet_class = pc_machine
+            }
+        }
+    }
+    mean_time_to_happen = {
+        days = 90
+    }
+    immediate = {
+        change_pc = pc_arctic
+    }
+}

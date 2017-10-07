@@ -511,9 +511,11 @@ dyson_sphere_restored = {
 					is_planet_class = pc_tundra
 					is_planet_class = pc_alpine
 					is_planet_class = pc_gaia
+					is_planet_class = pc_nuked
+					is_planet_class = pc_machine
 				}
 			}
-			destroy_colony = { keep_buildings = no }
+			destroy_colony = { keep_buildings = no}
 			change_pc = pc_barren_cold
 			add_modifier = {
 				modifier = "terraforming_candidate"
