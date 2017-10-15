@@ -173,7 +173,11 @@ dyson_sphere_1 = {
 			limit = { 
 				AND = {
 					is_star = no
-					NOT ={is_planet_class = pc_habitat}
+					NOR ={
+						is_planet_class = pc_habitat
+						is_planet_class = pc_arctic
+						is_planet_class = pc_machine
+						is_planet_class = pc_nuked}
 				}
 			}
 			add_modifier = {
@@ -387,9 +391,6 @@ dyson_sphere_5 = {
 					is_planet_class = pc_tropical
 					is_planet_class = pc_continental
 					is_planet_class = pc_ocean
-					is_planet_class = pc_arctic
-					is_planet_class = pc_tundra
-					is_planet_class = pc_alpine
 					is_planet_class = pc_gaia
 				}
 			}
@@ -407,6 +408,15 @@ dyson_sphere_5 = {
 				modifier = "terraforming_candidate"
 				days = -1
 			}
+		}
+		every_system_planet = {
+			limit = {
+				OR = {
+					is_planet_class = pc_tundra
+					is_planet_class = pc_alpine
+				}
+			}
+			change_pc = pc_arctic
 		}
 		every_system_planet = { 
 			limit = { is_star = no }
@@ -525,12 +535,7 @@ dyson_sphere_restored = {
 					is_planet_class = pc_tropical
 					is_planet_class = pc_continental
 					is_planet_class = pc_ocean
-					is_planet_class = pc_arctic
-					is_planet_class = pc_tundra
-					is_planet_class = pc_alpine
 					is_planet_class = pc_gaia
-					is_planet_class = pc_nuked
-					is_planet_class = pc_machine
 				}
 			}
 			destroy_colony = { keep_buildings = no}
@@ -539,6 +544,15 @@ dyson_sphere_restored = {
 				modifier = "terraforming_candidate"
 				days = -1
 			}
+		}
+		every_system_planet = {
+			limit = {
+				OR = {
+					is_planet_class = pc_tundra
+					is_planet_class = pc_alpine
+				}
+			}
+			change_pc = pc_arctic
 		}
 		every_system_planet = { 
 			limit = {
