@@ -335,9 +335,9 @@ ring_world_restored = {
 	upgrade_from = {
 		ring_world_ruined
 	}
-	build_time = @repair_minerals
+	build_time = @repair_time
 	build_cost = {
-		minerals = @repair_time
+		minerals = @repair_minerals
 	}
 
 	possible = {
