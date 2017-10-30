@@ -339,7 +339,7 @@ ring_world_restored = {
 	build_cost = {
 		minerals = @repair_minerals
 	}
-
+	construction_blocks_others = @block_other_construction
 	possible = {
 		from = { 
 			has_technology = tech_mega_engineering
