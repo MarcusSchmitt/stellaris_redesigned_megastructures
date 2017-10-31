@@ -276,9 +276,6 @@ ring_world_3_intermediate = {
 		fromfrom.planet = {
 			set_planet_flag = has_megastructure
 		}
-		event_target:ring_section = {
-			set_planet_flag = has_megastructure
-		}
 		remove_megastructure = fromfrom
 		if = {
 			limit = {

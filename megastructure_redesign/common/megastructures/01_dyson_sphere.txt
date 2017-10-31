@@ -347,9 +347,20 @@ dyson_sphere_5 = {
 		if {
 			limit = {
 				any_planet = {
-					OR = {
-						is_colony = yes
-						is_under_colonization = yes 
+					AND = {
+						OR = {
+							is_colony = yes
+							is_under_colonization = yes 
+						}
+						OR = {
+								is_planet_class = pc_desert
+								is_planet_class = pc_arid
+								is_planet_class = pc_savannah
+								is_planet_class = pc_tropical
+								is_planet_class = pc_continental
+								is_planet_class = pc_ocean
+								is_planet_class = pc_gaia
+							}
 					}
 					NOT = {
 						has_planet_flag = megastructure
@@ -371,7 +382,6 @@ dyson_sphere_5 = {
 				OR = {
 					is_planet_class = pc_molten
 					is_planet_class = pc_toxic
-					is_planet_class = pc_nuked
 				}
 			}
 			change_pc = pc_frozen
