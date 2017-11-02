@@ -178,6 +178,7 @@ dyson_sphere_1 = {
 						is_planet_class = pc_arctic
 						is_planet_class = pc_machine
 						is_planet_class = pc_nuked}
+					colonizeable_planet = yes
 				}
 			}
 			add_modifier = {
